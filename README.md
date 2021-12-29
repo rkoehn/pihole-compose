@@ -20,16 +20,14 @@ Content of `/etc/systemd/resolved.conf`:
 #ReadEtcHosts=yes
 ```
 
-Uncomment (remove # from the front of the line) the DNS= line and the DNSStubListener= line.
-Next, change the DNS= value in this file to the DNS server you want to use (e.g. 127.0.0.1 to use a local proxy, 1.1.1.1 to use the Cloudflare DNS, etc.),
+Uncomment (remove # from the front of the line) the DNSStubListener= line
 and also change the DNSStubListener= value from yes to no.
 
 ```
 [Resolve]
-DNS=192.168.178.1 fe80::99:aff:fec1:d5ae%2
-# Use cloudflare DNS as fallback
-FallbackDNS=1.1.1.1
-Domains=fritz.box
+#DNS=
+#FallbackDNS=
+#Domains=
 #LLMNR=no
 #MulticastDNS=no
 #DNSSEC=no
