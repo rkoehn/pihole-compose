@@ -5,22 +5,18 @@ version: "3"
 services:
   pihole:
     container_name: pihole
-    image: pihole/pihole:2024.07.0
+    image: pihole/pihole:2025.03.1
     # For DHCP it is recommended to remove these ports and instead add: network_mode: "host"
     ports:
       - "53:53/tcp"
       - "53:53/udp"
       - "8888:80/tcp"
-      # - "67:67/udp"
-      # - "443:443/tcp"
+      - "8443:443/tcp"
     environment:
       TZ: 'Europe/Berlin'
-      WEBPASSWORD: 'kKFPQ8u6'
-      PIHOLE_DNS_: '8.8.8.8;8.8.4.4'
+      FTLCONF_webserver_api_password: 'kKFPQ8u6'
+      FTLCONF_dns_upstreams: '8.8.8.8;8.8.4.4'
     # Volumes store your data between container upgrades
     volumes:
       - './etc-pihole/:/etc/pihole/'
-      - './etc-dnsmasq.d/:/etc/dnsmasq.d/'
-      # run `touch ./var-log/pihole.log` first unless you like errors
-      # - './var-log/pihole.log:/var/log/pihole.log'
     restart: unless-stopped
